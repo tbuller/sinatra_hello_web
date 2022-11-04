@@ -12,17 +12,17 @@ describe Application do
   # class so our tests work.
   let(:app) { Application.new }
 
-  context "GET to /" do
-    it "returns 200 OK with the right content" do
-      # Send a GET request to /
-      # and returns a response object we can test.
-      response = get("/", names: "Julia, Mary, Karim")
+  # context "GET to /" do
+  #   it "returns 200 OK with the right content" do
+  #     # Send a GET request to /
+  #     # and returns a response object we can test.
+  #     response = get("/", names: "Julia, Mary, Karim")
 
-      # Assert the response status code and body.
-      expect(response.status).to eq(200)
-      expect(response.body).to eq("Julia, Mary, Karim")
-    end
-  end
+  #     # Assert the response status code and body.
+  #     expect(response.status).to eq(200)
+  #     expect(response.body).to eq("Julia, Mary, Karim")
+  #   end
+  # end
 
   context "POST to /submit" do
     it "returns 200 OK with the right content" do
@@ -44,5 +44,19 @@ describe Application do
       expect(response.status).to eq(200)
       expect(response.body).to eq('Alice,Joe,Julia,Kieran,Zoe')
     end
+  end 
+  
+  context "GET to /" do
+    it "conatains a h1 title" do
+      response = get('/')
+
+      expect(response.body).to include ('<h1>Hello!</h1>')
+    end
+    
+    it "contains a div" do
+      response = get('/')
+
+      expect(response.body).to include('<div>')
+    end  
   end    
 end

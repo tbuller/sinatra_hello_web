@@ -10,14 +10,17 @@ class Application < Sinatra::Base
     "Hello #{name}"
   end
 
-  get '/' do
-    names = params[:names]
-    return names
-  end  
+  # get '/' do
+  #   names = params[:names]
+  #   return names
+  # end  
 
   post '/sort-names' do
     names = params[:names]
     names.split(",").sort.join(",")
+  end
+  
+  get '/' do
+    return erb(:index)
   end  
-   
 end    
